@@ -1,5 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
-from django.core.urlresolvers import reverse
+
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 from django.conf import settings
 
 from wpadmin.utils import get_admin_site, get_admin_site_name
