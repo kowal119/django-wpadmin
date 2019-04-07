@@ -1,5 +1,6 @@
 from django import template
 from django.utils.translation import ugettext_lazy as _
+from django.utils.safestring import mark_safe
 
 from wpadmin.utils import (
     get_admin_site_name, get_wpadmin_settings, are_breadcrumbs_enabled)
@@ -11,8 +12,8 @@ def wpadmin_render_custom_style(context):
     custom_style_path = get_wpadmin_settings(get_admin_site_name(context)) \
         .get('custom_style', None)
     if custom_style_path:
-        return '<link type="text/css" rel="stylesheet" href="%s" />' \
-            % custom_style_path
+        return mark_safe('<link type="text/css" rel="stylesheet" href="%s" />' \
+            % custom_style_path)
     else:
         return ''
 
